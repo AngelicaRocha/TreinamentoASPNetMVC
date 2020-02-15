@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Portfolio";
+}
+
+<h2>Portfolio</h2>
+
+@foreach (string arquivo in ViewBag.ImageUrlList)
+{
+    <img src="@arquivo" class="img-portfolio" />
+}
+
+<div class="clearfix"></div>
+
