@@ -1,0 +1,36 @@
+﻿@model ViagensOnline.Cap04.Lab1.Models.Destino
+
+@{
+    ViewBag.Title = "DestinoExcluir";
+}
+
+<h2>Destino: Excluir</h2>
+
+<h3>Deseja mesmo excluir esse registo?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Nome)</dt>
+        <dd>@Html.DisplayFor(model => model.Nome)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Pais)</dt>
+        <dd>@Html.DisplayFor(model => model.Pais)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Cidade)</dt>
+        <dd>@Html.DisplayFor(model => model.Cidade)</dd>
+    </dl>
+    <div class="imagemForm">
+        <img src="~/Imagens/@Model.Foto"
+             style="width:500px" />
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "DestinoListagem")
+        </div>
+    }
+</div>

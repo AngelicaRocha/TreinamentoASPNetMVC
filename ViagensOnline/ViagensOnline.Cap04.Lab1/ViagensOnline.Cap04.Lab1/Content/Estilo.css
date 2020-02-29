@@ -1,0 +1,42 @@
+﻿.imagemInicial {
+    width:100%;
+    border-radius:5px;
+}
+
+.alerta {
+    padding-top:5px;
+    padding-bottom:5px;
+    color:red;
+    font-weight:bold;
+}
+
+.imagemForm {
+    margin-bottom:20px;
+    width:500px;
+}
+
+h2 {
+    margin-bottom:20px;
+}
+footer {
+    margin-top:50px;
+}
+
+.destinos-box {
+    float:left;
+    margin: 30px 20px 20px 0;
+}
+
+.destinos-box img {
+    width:250px;
+    border-radius:5px;
+}
+
+.destinosNome {
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.destinosCidadePais {
+    font-size:10px;
+}
