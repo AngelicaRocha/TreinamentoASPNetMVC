@@ -33,14 +33,18 @@ namespace POC.ADONET.DAL
             //Atribuindo o objeto SlConnections ja instanciado para a propriedade conection
             repoDB.Cmd.Connection = repoDB.Conn;
 
+            int retorno = 0;
+
             //Abre a conexão com o banco de dados
             if (repoDB.OpenConection())
             {
                 //Executando o comando insert na base
                 //ExecuteNonQuery retorna o número de linhas afetadas
-                var retorno = repoDB.Cmd.ExecuteNonQuery();
-                return (retorno > 0);
-            }            
+                retorno = repoDB.Cmd.ExecuteNonQuery();
+                
+            }
+
+            return (retorno > 0);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace POC.TESTE.UNITARIO
         public void TestarInsertNaTabelaCliente()
         {
             ClienteDAL clienteDAL = new ClienteDAL();
-            clienteDAL.Add("Mariana Ribeiro", "marianaribeiro@yahoo.com.br", "Não tem residência fixa");
+            clienteDAL.Add("João da Silva", "joaosilva@hotmail.com", "NA");
         }
     }
 }
