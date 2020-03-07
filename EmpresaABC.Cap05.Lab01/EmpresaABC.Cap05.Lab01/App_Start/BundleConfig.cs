@@ -23,7 +23,7 @@ namespace EmpresaABC.Cap05.Lab01
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootswatch/united/bootstrap.css",
                       "~/Content/site.css"));
         }
     }
