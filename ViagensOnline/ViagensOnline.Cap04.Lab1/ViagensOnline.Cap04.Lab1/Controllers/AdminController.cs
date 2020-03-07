@@ -219,7 +219,8 @@ namespace ViagensOnline.Cap04.Lab1.Controllers
         public ActionResult Logout()
         {
             Request.GetOwinContext().Authentication.SignOut();
-
+            //Encerra a sessão e o cookie de autenticação
+            Session.Abandon();
             return RedirectToAction("Login");
         }
     }
