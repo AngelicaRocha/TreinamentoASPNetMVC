@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using System.IO;
 using ViagensOnline.Cap04.Lab1.Db;
 using ViagensOnline.Cap04.Lab1.Models;
+using System.Security.Claims;
 
 namespace ViagensOnline.Cap04.Lab1.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private const string ActionDestinoListagem = "DestinoListagem";
@@ -162,6 +164,63 @@ namespace ViagensOnline.Cap04.Lab1.Controllers
                 }
             }
             return RedirectToAction(ActionDestinoListagem);
+        }
+
+        //Login
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Login(string Usuario, string Senha)
+        {
+            if (string.IsNullOrEmpty(Usuario))
+            {
+                ViewBag.Mensagem = "Digite o usuário";
+                return View();
+            }
+
+            if (string.IsNullOrEmpty(Senha))
+            {
+                ViewBag.Mensagem = "Digite a senha";
+                return View();
+            }
+
+            if (Usuario != "admin" || Senha != "admin")
+            {
+                ViewBag.Mensagem = "Usuário ou senha inválido";
+                return View();
+            }
+
+            //Um Array de claims. Claim é uma declaração que
+            // o usuário faz. Nesse caso, são duas: Ele se chama
+            // Administrador e pertence ao grupo admin
+            Claim[] claims = new Claim[3];
+            claims[0] = new Claim(ClaimTypes.Name, "Administrador");
+            claims[1] = new Claim(ClaimTypes.Role, "admin");
+            claims[2] = new Claim(ClaimTypes.NameIdentifier, "admin");
+
+            //Nome para identificar
+            string nomeAutenticacao = "AppViagensOnlineCookie";
+
+            //Identidade
+            ClaimsIdentity identity = new ClaimsIdentity(claims, nomeAutenticacao);
+
+            //Autentica
+            Request.GetOwinContext().Authentication.SignIn(identity);
+
+            //Redireciona para a pasta destinos
+            return RedirectToAction(ActionDestinoListagem);
+        }
+
+        public ActionResult Logout()
+        {
+            Request.GetOwinContext().Authentication.SignOut();
+
+            return RedirectToAction("Login");
         }
     }
 }
