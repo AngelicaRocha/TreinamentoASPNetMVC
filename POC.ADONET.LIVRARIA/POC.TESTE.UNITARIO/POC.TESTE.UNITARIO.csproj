@@ -59,6 +59,10 @@
       <Project>{5288d307-bd21-4bca-a38b-13dffc560d61}</Project>
       <Name>POC.ADONET.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\POC.ADONET.MODELS\POC.ADONET.MODELS.csproj">
+      <Project>{b632c986-bd46-401f-90ae-9066f75f29cb}</Project>
+      <Name>POC.ADONET.MODELS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

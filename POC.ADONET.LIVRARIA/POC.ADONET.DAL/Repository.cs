@@ -24,5 +24,14 @@ namespace POC.ADONET.DAL
             Conn.Open();
             return (Conn.State == System.Data.ConnectionState.Open);            
         }
+
+        public void CloseConnection()
+        {
+            if (Conn.State == System.Data.ConnectionState.Open)
+            {
+                Conn.Close();
+            }
+        }
+        
     }
 }
