@@ -9,15 +9,24 @@ namespace POC.ADONET.MODELS
 {
     public class LivrosMOD
     {
-        [Display(Name = "Código")]
+        [Required(ErrorMessage = "O ID ou código é obrigatório")]
+        [Display(Name = "Código:")]
         public string Id { get; set; }
 
-        [Display(Name = "Título")]
+        [Required(ErrorMessage = "Por favor preencher o título do livro")]
+        [StringLength(100, ErrorMessage = "O nome do livro permite até {1} caracteres")]
+        [Display(Name = "Título:")]
         public string Titulo { get; set; }
+
+        [Display(Name = "Assunto:")]
         public string Categoria { get; set; }
 
-        [Display(Name = "Preço")]
-        public decimal Preco { get; set; }
+        [Display(Name = "Preço R$:")]
+        public decimal? Preco { get; set; }
+
+        [Required(ErrorMessage = "Por favor preencha a resenha")]
+        [StringLength(50, ErrorMessage = "A resenha permite até {1} caracteres")]
+        [Display(Name = "Resenha:")]
         public string Resenha { get; set; }
     }
 }

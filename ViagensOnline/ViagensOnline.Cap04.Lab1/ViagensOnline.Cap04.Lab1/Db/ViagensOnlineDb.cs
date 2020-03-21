@@ -16,7 +16,7 @@ namespace ViagensOnline.Cap04.Lab1.Db
         {
 
         }
-
+        
         public DbSet<Destino> Destinos { get; set; }
     }
 }

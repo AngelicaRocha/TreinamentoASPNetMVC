@@ -23,6 +23,58 @@ namespace POC.ADONET.LIVRARIA.Controllers
             return View(lista);
         }
 
+        [HttpGet]
+        public ActionResult Editar (string id)
+        {
+            //declaro a variavel do tipo livro e so devo instanciar quando for utilizar
+            LivrosBLL livroBLL = null;
+            LivrosMOD livroMOD = null;
+
+            //Verificar se o status da chamada POST é válido
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(id))
+                {
+                    ModelState.AddModelError("","O Id do livro é inválido");
+                }
+
+                livroBLL = new LivrosBLL();
+
+                //obtemos o valor de retorno para objeto igual, a view espera livro MOD
+                livroMOD = livroBLL.BuscarLivroPorId(id);
+            }
+            return View(livroMOD);
+        }
+
+        [HttpPost]
+        public ActionResult Editar(LivrosMOD livro)
+        {
+            //Cria um objeto do tipo LivroBLL para fazer a validação de regra de negócio
+            LivrosBLL livrosBLL = null;
+
+            if (ModelState.IsValid)
+            {
+                //Só instancio se estiver tudo ok
+                livrosBLL = new LivrosBLL();
+                livrosBLL.SalvarLivro(livro);
+            }
+            return RedirectToAction("TodosLivros");
+        }
+
+        public ActionResult Excluir(string Id)
+        {
+            //Cria um objeto do tipo LivroBLL para fazer a validação de regra de negócio
+            LivrosBLL livrosBLL = null;
+
+            if (ModelState.IsValid)
+            {
+                //Só instancio se estiver tudo ok
+                livrosBLL = new LivrosBLL();
+                livrosBLL.ExcluirLivro(Id);
+            }
+            return RedirectToAction("TodosLivros");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
