@@ -105,6 +105,44 @@ namespace POC.ADONET.DAL
             return (retorno > 0);
         }
 
+        public bool InsertBook(LivrosMOD livro)
+        {
+            int retorno = 0;
+
+            try
+            {
+                InstanciarRepositorio();
+
+                //Montar o comando SQL
+                repoDB.Cmd.CommandText = @"INSERT INTO TITLES(TITLE_ID, TITLE, TYPE, NOTES, PRICE) VALUES(@IdLivro, @titulo, @categoria, @resenha, @preco)";
+
+                //Substituir os placeholders pelos valores reais
+                repoDB.Cmd.Parameters.AddWithValue("@IdLivro", livro.Id);
+                repoDB.Cmd.Parameters.AddWithValue("@titulo", livro.Titulo);
+                repoDB.Cmd.Parameters.AddWithValue("@categoria", livro.Categoria);
+                repoDB.Cmd.Parameters.AddWithValue("@resenha", livro.Resenha);
+                repoDB.Cmd.Parameters.AddWithValue("@preco", livro.Preco);
+
+                //Abre a conexão com o banco de dados
+                if (repoDB.OpenConection())
+                {
+                    //Executando o comando insert na base
+                    //ExecuteNonQuery retorna o número de linhas afetadas
+                    retorno = repoDB.Cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                repoDB.CloseConnection();
+            }
+
+            return (retorno > 0);
+        }
+
         public bool DeleteBookById(string Id)
         {
             int retorno = 0;

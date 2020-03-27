@@ -61,6 +61,26 @@ namespace POC.ADONET.LIVRARIA.Controllers
             return RedirectToAction("TodosLivros");
         }
 
+        [HttpGet]
+        public ActionResult Incluir()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Incluir(LivrosMOD livro)
+        {
+            //Cria um objeto do tipo LivroBLL para fazer a validação da regra de negócio
+            LivrosBLL livrosBLL = null;
+
+            if (ModelState.IsValid)
+            {
+                livrosBLL = new LivrosBLL();
+                livrosBLL.IncluirLivro(livro);
+            }
+            return RedirectToAction("TodosLivros");
+        }
+
         public ActionResult Excluir(string Id)
         {
             //Cria um objeto do tipo LivroBLL para fazer a validação de regra de negócio

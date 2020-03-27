@@ -25,7 +25,7 @@ namespace POC.ADONET.MODELS
         public decimal? Preco { get; set; }
 
         [Required(ErrorMessage = "Por favor preencha a resenha")]
-        [StringLength(50, ErrorMessage = "A resenha permite até {1} caracteres")]
+        [StringLength(150, ErrorMessage = "A resenha permite até {1} caracteres")]
         [Display(Name = "Resenha:")]
         public string Resenha { get; set; }
     }

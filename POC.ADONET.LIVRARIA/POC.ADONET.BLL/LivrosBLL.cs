@@ -93,6 +93,30 @@ namespace POC.ADONET.BLL
             return resultado;
         }
 
+        public bool IncluirLivro(LivrosMOD livro)
+        {
+            //Variavel para controle de retorno
+            bool resultado = false;
+            try
+            {
+                if (livrosDAL == null)
+                {
+                    livrosDAL = new LivrosDAL();
+                }
+                //Vamos validar os campos recebidos
+                if (ValidarInfoLivro(livro))
+                {
+                    //Se a validação for ok, atualizamos o banco de dados
+                    resultado = livrosDAL.InsertBook(livro);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return resultado;
+        }
+
         public bool ValidarInfoLivro(LivrosMOD livro)
         {
             if (string.IsNullOrEmpty(livro.Titulo))
