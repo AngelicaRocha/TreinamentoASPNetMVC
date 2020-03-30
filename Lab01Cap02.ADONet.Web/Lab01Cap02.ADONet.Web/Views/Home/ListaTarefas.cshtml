@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lab01Cap02.ADONet.Models.Tarefas>
+
+@{
+    ViewBag.Title = "ListaTarefas";
+}
+
+<h2>mural de tarefas</h2>
+
+<p>
+    @Html.ActionLink("nova tarefa", "NovaTarefa", null, new {@class = "btn btn-primary"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nome
+        </th>
+        <th>
+            Prioridade
+        </th>
+        <th>
+            Concluído?
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Observação
+        </th>
+        <th>
+            Data de inserção
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prioridade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Concluido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Observacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataInsercao)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "EditarTarefa", new { id=item.Id }) |
+            @Html.ActionLink("Detalhes", "DetalheTarefa", new { id=item.Id }) |
+            @Html.ActionLink("Excluir", "ExcluirTarefa", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
