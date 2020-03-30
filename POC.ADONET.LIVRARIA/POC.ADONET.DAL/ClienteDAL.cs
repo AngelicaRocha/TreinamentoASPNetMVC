@@ -22,7 +22,8 @@ namespace POC.ADONET.DAL
                 repoDB = new Repository();
 
                 //Adiciona a string de conexão
-                repoDB.Conn.ConnectionString = "Data Source=3P47_01;Initial Catalog=Livraria;User ID=sa;Password=Imp@ct@";
+                //repoDB.Conn.ConnectionString = "Data Source=3P47_01;Initial Catalog=Livraria;User ID=sa;Password=Imp@ct@";
+                repoDB.Conn.ConnectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = LIVRARIA; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
 
                 //Atribuindo o objeto SlConnections ja instanciado para a propriedade conection
                 repoDB.Cmd.Connection = repoDB.Conn;
