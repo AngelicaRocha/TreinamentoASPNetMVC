@@ -16,9 +16,9 @@ body {
 }
 
 .cabecalho {
-    background-color: #fff;
-    border-radius: 10px;
-    margin-top: 80px;
+    text-align: center;
+    background-color: #cefd10;
+    margin: 80px;
 }
 
     .cabecalho h1 {
@@ -32,6 +32,30 @@ body {
     margin-top: 10px;
     border-radius: 10px;
     padding: 20px;
+}
+
+.nova-tarefa {    
+    border-radius: 100px;
+    background-color: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    z-index: 3;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+    .nova-tarefa a {
+        font-size: 40px;
+        color: #20ea11;
+    }
+
+    .nova-tarefa a:hover{
+        color: #ff7500;
+    }
+
+.box-tarefa h5{
+    font-size: 10px;
 }
 
 .gridView {

@@ -4,45 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@ViewBag.Title - Tarefas</title>
+    <title>Minha lista de tarefas</title>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Tarefas App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Texto, View, Controller -->
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Mural de Tarefas", "ListaTarefas", "Home")</li>
-                    <!--<li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <div class="container body-content">
-
         <div class="cabecalho">
-            <h1>Tarefas</h1>
+            <h1>Mural de tarefas</h1>
         </div>
-
         @RenderBody()
-        <hr />
-        <footer class="rodape">
-            <p>&copy; @DateTime.Now.Year - Desenvolvido em sala como exercício de ASP.NET MVC e melhorado depois pra usar de portfólio :)</p>
-        </footer>
     </div>
+    <hr />
+    <footer class="container">
+        <p>&copy; @DateTime.Now.Year - Desenvolvido em sala como exercício de ASP.NET MVC e melhorado depois pra usar de portfólio :)</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

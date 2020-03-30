@@ -4,11 +4,10 @@
     ViewBag.Title = "ListaTarefas";
 }
 
-<h2>mural de tarefas</h2>
+<div class="nova-tarefa">
+    <a href="/Home/NovaTarefa"><span class="glyphicon glyphicon-plus"></span></a>
+</div>
 
-<p>
-    @Html.ActionLink("nova tarefa", "NovaTarefa", null, new {@class = "btn btn-primary"})
-</p>
 <table class="table">
     <tr>
         <th>
@@ -32,32 +31,65 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prioridade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Concluido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Observacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataInsercao)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditarTarefa", new { id=item.Id }) |
-            @Html.ActionLink("Detalhes", "DetalheTarefa", new { id=item.Id }) |
-            @Html.ActionLink("Excluir", "ExcluirTarefa", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        string cor = string.Empty;
+        var prioridade = Html.DisplayFor(modelItem => item.Prioridade).ToString();
+
+        switch (prioridade)
+        {
+            case "1":
+                cor = "#ff8c1f";
+                break;
+            case "2":
+                cor = "#fffe1f";
+                break;
+            case "3": cor = "#a3ff1f";
+                break;
+        }
+
+
+        <div class="col-sm-4 col-md-3">
+            <div class="thumbnail" style="background-color: @cor">
+                <div class="caption box-tarefa">
+                    <h4>@Html.DisplayFor(modelItem => item.Nome)</h4>
+                    <h5>Prioridade @Html.DisplayFor(modelItem => item.Prioridade)</h5>
+                    <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
+                    <p>
+                        <a href="#" class="btn btn-info" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon glyphicon-zoom-in"></span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prioridade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Concluido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInsercao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "EditarTarefa", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "DetalheTarefa", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "ExcluirTarefa", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
