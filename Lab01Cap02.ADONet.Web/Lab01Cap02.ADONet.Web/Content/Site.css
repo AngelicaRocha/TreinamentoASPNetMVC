@@ -54,8 +54,24 @@ body {
         color: #ff7500;
     }
 
+.box-tarefa {
+    padding: 5px;
+    margin-bottom: 30px;
+    min-height: 200px;
+}
+
 .box-tarefa h5{
     font-size: 10px;
+}
+
+    .box-tarefa .botoes {
+        position: absolute;
+        bottom: 40px;
+        text-align:justify;
+    }
+
+.tarefa-concluida {
+    text-decoration: line-through;
 }
 
 .gridView {

@@ -34,7 +34,8 @@
     @foreach (var item in Model)
     {
         string cor = string.Empty;
-        var prioridade = Html.DisplayFor(modelItem => item.Prioridade).ToString();
+        string textoTachado = string.Empty;        
+        var prioridade = (item.Prioridade).ToString();
 
         switch (prioridade)
         {
@@ -48,18 +49,22 @@
                 break;
         }
 
+        if (item.Concluido)
+        {
+            textoTachado = "tarefa-concluida";
+        }
 
         <div class="col-sm-4 col-md-3">
-            <div class="thumbnail" style="background-color: @cor">
-                <div class="caption box-tarefa">
-                    <h4>@Html.DisplayFor(modelItem => item.Nome)</h4>
+            <div class="box-tarefa" style="background-color: @cor">
+                <div class="caption box-tarefa @textoTachado">
+                    <h4><span>@Html.DisplayFor(modelItem => item.Concluido)</span> @Html.DisplayFor(modelItem => item.Nome)</h4>
                     <h5>Prioridade @Html.DisplayFor(modelItem => item.Prioridade)</h5>
                     <p>@Html.DisplayFor(modelItem => item.Descricao)</p>
-                    <p>
-                        <a href="#" class="btn btn-info" role="button"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a href="#" class="btn btn-success" role="button"><span class="glyphicon glyphicon glyphicon-zoom-in"></span></a>
-                    </p>
+                    <div class="botoes">
+                        <a href="@Url.Action("EditarTarefa", new { id = item.Id })" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="@Url.Action("ExcluirTarefa", new { id = item.Id })" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a href="@Url.Action("DetalheTarefa", new { id = item.Id })" class="btn btn-success"><span class="glyphicon glyphicon-zoom-in"></span></a>                        
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,6 +91,7 @@
             </td>
             <td>
                 @Html.ActionLink("Editar", "EditarTarefa", new { id = item.Id }) |
+                <a href="@Url.Action("EditarTarefa", new { id = item.Id })"><span class="glyphicon glyphicon-pencil"></span></a>
                 @Html.ActionLink("Detalhes", "DetalheTarefa", new { id = item.Id }) |
                 @Html.ActionLink("Excluir", "ExcluirTarefa", new { id = item.Id })
             </td>
