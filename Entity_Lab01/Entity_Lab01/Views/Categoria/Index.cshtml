@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Entity_Lab01.Models.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Categorias</h2>
+
+<table class="table">
+
+@foreach (var item in Model) {
+    <tr>        
+        <td>
+            @Html.ActionLink(item.Nome, "ProdutosPorCategoria", new { id = item.IdCategoria })</td>
+    </tr>
+}
+
+</table>

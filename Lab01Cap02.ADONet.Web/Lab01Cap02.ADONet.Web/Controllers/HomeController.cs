@@ -127,5 +127,74 @@ namespace Lab01Cap02.ADONet.Web.Controllers
             }
             return View(tarefa);
         }
+
+        public ActionResult ExcluirTarefa(int id)
+        {
+            TarefasBLL tarefaBLL = null;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    tarefaBLL = new TarefasBLL();
+                    if (tarefaBLL.ExcluirTarefa(id))
+                    {
+                        TempData["SucessoExclusao"] = "sua tarefa foi excluida! :)";
+                        return RedirectToAction("ListaTarefas");                        
+                    }
+                    else
+                    {
+                        TempData["ErroExclusao"] = "algo deu errado ao exluir a tarefa";         
+                    }
+                }                
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "aconteceu uma falha ao tentar excluir essa tarefa :( tente novamente");                
+            }            
+            return RedirectToAction("ListaTarefas"); 
+        }
+
+        public ActionResult DetalheTarefa(int id)
+        {
+            TarefasBLL tarefasBLL = null;
+            Tarefas tarefasMOD = null;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    tarefasBLL = new TarefasBLL();
+                    tarefasMOD = tarefasBLL.SelecionarTarefaPorId(id);
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("","Ocorreu uma falha na pesquisa da tarefa selecionada: " + ex.Message);
+            }
+            return View(tarefasMOD);
+        }
+
+        public ActionResult ConcluirTarefa(int id)
+        {
+            TarefasBLL tarefaBLL = null;
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    tarefaBLL = new TarefasBLL();
+                    if (tarefaBLL.MarcarConcluida(id))
+                    {
+                        return RedirectToAction("ListaTarefas");
+                    }                    
+                }
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "aconteceu uma falha ao tentar concluir essa tarefa :( tente novamente");
+            }
+            return RedirectToAction("ListaTarefas");
+        }
     }
 }

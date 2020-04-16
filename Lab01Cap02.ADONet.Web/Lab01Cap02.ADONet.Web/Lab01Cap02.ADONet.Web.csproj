@@ -162,6 +162,7 @@
     <Content Include="Views\Home\NovaTarefa.cshtml" />
     <Content Include="Views\Home\ListaTarefas.cshtml" />
     <Content Include="Views\Home\EditarTarefa.cshtml" />
+    <Content Include="Views\Home\DetalheTarefa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

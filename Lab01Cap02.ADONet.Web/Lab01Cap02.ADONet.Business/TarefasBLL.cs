@@ -38,6 +38,16 @@ namespace Lab01Cap02.ADONet.Business
             return false;
         }
 
+        public bool ExcluirTarefa(int id)
+        {
+            return Repository.ExcluirTarefa(id);
+        }
+
+        public bool MarcarConcluida(int id)
+        {
+            return Repository.ConcluirTarefa(id);
+        }
+
         public bool ValidarTarefa(Tarefas tarefa)
         {
             //Nome é obrigatório

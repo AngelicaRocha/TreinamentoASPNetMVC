@@ -1,4 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+}
+
+<div style="background-color: #A52A2A; color: white; height: 10px;"></div>
+<div style="background-color: #f80000; color: white; height: 170px">
+    <div style="padding:20px;">
+        <h3>Erro da Aplicação:</h3>
+        <h4>Desculpe, um erro inesperado aconteceu!</h4>
+        <h6>@Html.ActionLink("Voltar para a lista de tarefas", "ListaTarefas", "Home", new { @class = "btn btn-info" } )</h6>
+    </div>
+    <div style="background-color: #A52A2A; color: white; height: 20px;"></div>
+</div>
+
+
+
+<!--
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,4 +29,4 @@
         <h2>An error occurred while processing your request.</h2>
     </hgroup>
 </body>
-</html>
+</html>-->

@@ -107,7 +107,7 @@ namespace Lab01Cap02.ADONet.Data
             {
                 using (var cmd = new SqlCommand(query, cn))
                 {
-                    cmd.Parameters.AddWithValue("@IdTarefa", tarefa.Id);
+                    cmd.Parameters.AddWithValue("@IdTarefa", id);
                     cn.Open();
 
                     using (var dr = cmd.ExecuteReader())
@@ -127,6 +127,36 @@ namespace Lab01Cap02.ADONet.Data
             }
 
             return tarefa;
+        }
+
+        public static bool ExcluirTarefa(int id)
+        {
+            string query = "DELETE Tarefa WHERE ID = @IdTarefa";
+            bool retorno = false;
+
+            using (var cn = new SqlConnection(Conexao))
+            {
+                var cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@IdTarefa", id);
+                cn.Open();
+                retorno = (cmd.ExecuteNonQuery() > 0);
+            }
+            return retorno;
+        }
+
+        public static bool ConcluirTarefa(int id)
+        {
+            string query = @"UPDATE Tarefa SET Concluido = @status WHERE Id = @IdTarefa";
+            string statusTarefa = SelectTarefaPorId(id).Concluido.ToString();
+
+            using (var cn = new SqlConnection(Conexao))
+            {
+                var cmd = new SqlCommand(query, cn);
+                cmd.Parameters.AddWithValue("@IdTarefa", id);
+                if (statusTarefa=="1" ? cmd.Parameters.AddWithValue("@status", 0) : cmd.Parameters.AddWithValue("@status", 1));
+                cn.Open();
+                return (cmd.ExecuteNonQuery() > 0);
+            }
         }
     }
 }
