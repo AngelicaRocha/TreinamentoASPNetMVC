@@ -38,7 +38,7 @@ namespace Lab01Cap02.ADONet.Web.Controllers
                     }
                     else
                     {
-                        TempData["Sucesso"] = "sua tarefa foi adicinada! :)";
+                        TempData["Sucesso"] = "sua tarefa foi adicionada! :)";
                         return RedirectToAction("NovaTarefa");
                     }
                 }
@@ -119,6 +119,7 @@ namespace Lab01Cap02.ADONet.Web.Controllers
                 {
                     tarefaBLL = new TarefasBLL();
                     tarefaBLL.AtualizarTarefa(tarefa);
+                    TempData["Sucesso"] = "sua tarefa foi alterada! :)";
                 }
             }
             catch (Exception ex)

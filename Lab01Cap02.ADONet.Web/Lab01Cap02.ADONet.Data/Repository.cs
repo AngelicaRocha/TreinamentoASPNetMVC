@@ -153,10 +153,10 @@ namespace Lab01Cap02.ADONet.Data
             {
                 var cmd = new SqlCommand(query, cn);
                 cmd.Parameters.AddWithValue("@IdTarefa", id);
-                if (statusTarefa=="1" ? cmd.Parameters.AddWithValue("@status", 0) : cmd.Parameters.AddWithValue("@status", 1));
+                cmd.Parameters.AddWithValue("@status", 1);
                 cn.Open();
                 return (cmd.ExecuteNonQuery() > 0);
             }
-        }
+        } 
     }
 }
